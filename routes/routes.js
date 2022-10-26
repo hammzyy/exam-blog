@@ -1,25 +1,13 @@
 const router = require("express").Router()
 const Blog = require("../models/blog")
 
-router.get("/", (req, res)=>{
-    Blog.find()
-        .then(result=>{
-            console.log(result)
-            res.render("blogs/index",{
-                title: "Home",
-                blogs: result
-            })
-        })
-    
-})
-
-router.get("/create-blog", (req, res)=>{
-    res.render("blogs/create-blog", {
+router.get("/createblog", (req, res)=>{
+    res.render("blogs/createblog", {
         title: "Create Blog"
     })
 })
 
-router.post("/create-blog", (req, res)=>{
+router.post("/createblog", (req, res)=>{
     const blog = Blog(req.body)
     blog.save()
         .then(()=>{
